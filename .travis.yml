@@ -19,4 +19,4 @@ deploy:
   file: target/*.jar
   on:
     repo: nbaars/pwnedpasswords4j
-    branch: master
+    tags: true
