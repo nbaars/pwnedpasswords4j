@@ -25,7 +25,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.pwnedpassword4j</groupId>
+            <groupId>org.pwnedpasswords4j</groupId>
             <artifactId>pwnedpasswords-spring-boot-starter</artifactId>
             <version>${project.version}</version>
         </dependency>
