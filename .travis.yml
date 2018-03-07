@@ -12,11 +12,18 @@ script:
 cache:
   directories:
   - "$HOME/.m2"
+before_deploy:
+  - export ARTIFACTS_FOLDER=$HOME/build/$TRAVIS_REPO_SLUG/Deployable_Artifacts/
+  - mkdir -p $ARTIFACTS_FOLDER
+  - cp -fa target/*.jar $ARTIFACTS_FOLDER/
+  - echo "Contents of artifacts folder:"
+  - ls $ARTIFACTS_FOLDER
 deploy:
   provider: releases
   api_key:
     secure: tYIhQ3Iqk/fYG3kxDCZWC1aZZ6MJ1KcD+cuaXn80jj5FbwjtaewP5DDpCKB7b7EU8iFetdu1hR0WX7yFwCK8tJuxYFjgrefKlbda6SYaKU5HeH5WjUewuwMzxz8n4xbAg5+OoKJYn5T14w3sYq85fmx7KncNROGlfSU+U4o38X+MS5WP8F9Z1FKNO9mO+/4mvZhBsSzCqS2SOqFhJ1Faz4AYECem5Ax85gF8SKZaXwXup71SAS6Gg4U0H5KGF7AHafPcoxqfwn8+ryPJQffXSHlUg8JZq2Yqx/l6dHfJ9vWnii2tm1ryT0424PNNA8bHBGdxCv5ZezU4Fy+y1RZZU4d+VYIDHrXsoRFLgqnk0dnbRI1vbNtXvalF40y3ffABzGun7gCp/OrMxoCZwFj3CM3rV9SJzO4+eugC+yAH9C8CG45UmPpa4YZNoIHNCYRfoPvtmr9huVY3opSi4ziDUIHcNrV9h0NlWRZnh3nmMV3g14Wckp32VOZFAqKw+QNUnkARD+k4Pb0q7u5Bnww5HIYokhiVTNal+eabuAxcf7tWdL3H4a/fHVWzMZXfMLvDDx7DaotQeDwM2C1ZyC/qmFYVWfbVmI0dxc3Tpr8RrNLYyz+c3+uIGpPcCJOfuQZqxw4TP8d76gp9uoRfu7jojRzeoS+F1b/lH7163jw7lfY=
-  file: target/*.jar
+  file_glob: true
+  file: $ARTIFACTS_FOLDER/*.jar
   on:
     repo: nbaars/pwnedpasswords4j
     tags: true
