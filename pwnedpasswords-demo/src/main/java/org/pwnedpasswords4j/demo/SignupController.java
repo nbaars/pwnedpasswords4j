@@ -1,6 +1,6 @@
 package org.pwnedpasswords4j.demo;
 
-import org.pwnedpassword4j.client.PwnedPasswordChecker;
+import org.pwnedpasswords4j.client.PwnedPasswordChecker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
