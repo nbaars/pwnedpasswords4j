@@ -73,7 +73,6 @@ public class SignupController {
 }
 ```
 
-Have fun!
 
 
 
