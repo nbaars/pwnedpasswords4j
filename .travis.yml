@@ -15,7 +15,8 @@ cache:
 before_deploy:
   - export ARTIFACTS_FOLDER=$HOME/build/$TRAVIS_REPO_SLUG/Deployable_Artifacts/
   - mkdir -p $ARTIFACTS_FOLDER
-  - cp -fa target/*.jar $ARTIFACTS_FOLDER/
+  - cp -fa pwnedpasswords-client/target/*.jar $ARTIFACTS_FOLDER/
+  - cp -fa pwnedpasswords-spring-boot-starter/target/*.jar $ARTIFACTS_FOLDER/
   - echo "Contents of artifacts folder:"
   - ls $ARTIFACTS_FOLDER
 deploy:
