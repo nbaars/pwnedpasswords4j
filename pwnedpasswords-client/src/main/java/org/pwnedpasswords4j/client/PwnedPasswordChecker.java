@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class PwnedPasswordChecker {
 
@@ -14,6 +15,10 @@ public class PwnedPasswordChecker {
 
     public PwnedPasswordChecker(PwnedPasswordClient client) {
         this.client = client;
+    }
+
+    public CompletableFuture<Boolean> asyncCheck(String password) {
+        return CompletableFuture.supplyAsync(() -> check(password));
     }
 
     public boolean check(String password) {
