@@ -5,8 +5,8 @@ import okhttp3.OkHttpClient;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class PwnedPasswordChecker {
 
@@ -18,21 +18,23 @@ public class PwnedPasswordChecker {
     }
 
     public CompletableFuture<Boolean> asyncCheck(String password) {
-        return CompletableFuture.supplyAsync(() -> check(password));
+        Hex hashedPassword = hashPassword(password);
+        return client.fetchHashesAsync(hashedPassword).thenApplyAsync(x -> x.contains(hashedPassword));
     }
 
     public boolean check(String password) {
-        org.pwnedpasswords4j.client.Hex hashedPassword = hashPassword(password);
-        List<org.pwnedpasswords4j.client.Hex> hashes = client.fetchHashes(hashedPassword);
-
-        return hashes.contains(hashedPassword);
+        try {
+            return asyncCheck(password).get();
+        } catch (InterruptedException | ExecutionException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    private org.pwnedpasswords4j.client.Hex hashPassword(String password) {
+    private Hex hashPassword(String password) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
             byte[] digest = messageDigest.digest(password.getBytes(StandardCharsets.UTF_8));
-            return org.pwnedpasswords4j.client.Hex.from(digest);
+            return Hex.from(digest);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }

@@ -7,17 +7,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("signup")
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
+
+@RestController
 public class SignupController {
 
     @Autowired
     private PwnedPasswordChecker checker;
 
-    @PostMapping
-    public ResponseEntity<?> login(@RequestBody Login login) {
-        if (checker.check(login.getPassword())) {
-            return ResponseEntity.badRequest().body("Consider changing your password");
-        }
-        return ResponseEntity.ok().build();
+    @PostMapping("/signup")
+    public boolean login(@RequestBody Login login) {
+        return checker.check(login.getPassword());
+    }
+
+    @PostMapping("/signup/async")
+    public Future<Boolean> asynLogin(@RequestBody Login login) {
+        return checker.asyncCheck(login.getPassword());
     }
 }
