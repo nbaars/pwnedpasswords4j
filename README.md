@@ -24,6 +24,10 @@ In the code you can check a password as follows:
 ```
 PwnedPasswordChecker checker = PwnedPasswordChecker.standalone("My user agent")
 boolean result = checker.check("password");
+
+//OR for non blocking:
+
+CompletableFuture<Boolean> result = checker.asyncCheck("password");
 ```
 
 The user-agent is necessary to specify as described in the API description at haveibeenpwned.com.
@@ -52,6 +56,18 @@ Wire up the checker as follows:
 ```
  @Autowired
  private PwnedPasswordChecker checker;
+ 
+ ...
+ 
+ public void signup() {
+    boolean result = checker.check("password");
+    
+    //or for non-blocking use:
+    
+    CompletableFuture<Boolean> result = checker.asyncCheck("password");
+ }
+ 
+    
 ```
 
 As an example see the demo project:

@@ -3,7 +3,7 @@ package org.pwnedpasswords4j.client;
 import java.math.BigInteger;
 import java.util.Objects;
 
-public class Hex {
+class Hex {
 
     private String hex;
 
@@ -33,7 +33,6 @@ public class Hex {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(hex);
     }
 

@@ -1,12 +1,12 @@
 package org.pwnedpasswords4j.client;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import okhttp3.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import static java.lang.System.getProperty;
 
@@ -22,33 +22,58 @@ public class PwnedPasswordClient {
         this.userAgent = userAgent;
     }
 
-    List<org.pwnedpasswords4j.client.Hex> fetchHashes(org.pwnedpasswords4j.client.Hex hashedPassword) {
-        org.pwnedpasswords4j.client.Hex range = hashedPassword.firstFive();
-        Request request = new Request.Builder()
+    CompletableFuture<List<Hex>> fetchHashesAsync(Hex hashedPassword) {
+        Call call = httpClient.newCall(buildRequest(hashedPassword));
+        CompletableFuture<List<Hex>> future = new CompletableFuture<>();
+
+        call.enqueue(new Callback() {
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                future.completeExceptionally(e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) {
+                try {
+                    future.complete(parseResponse(hashedPassword.firstFive(), response));
+                } catch (IOException e) {
+                    future.completeExceptionally(e);
+                }
+            }
+        });
+        return future;
+    }
+
+    private Request buildRequest(Hex hashedPassword) {
+        Hex range = hashedPassword.firstFive();
+        return new Request.Builder()
                 .url(url + "/" + range)
                 .header("User-Agent", userAgent)
                 .build();
+    }
 
-        try (Response response = httpClient.newCall(request).execute()) {
+    private List<Hex> parseResponse(Hex range, Response response) throws IOException {
+        try {
             if (!response.isSuccessful()) {
                 throw new RuntimeException("Call failed to " + url + " got " + response);
             }
-            List<org.pwnedpasswords4j.client.Hex> hashes = new ArrayList<>();
+            List<Hex> hashes = new ArrayList<>();
             String[] lines = response.body().string().split(getProperty("line.separator"));
 
             for (String line : lines) {
-                hashes.add(org.pwnedpasswords4j.client.Hex.from(range + line.substring(0, line.lastIndexOf(":"))));
+                hashes.add(Hex.from(range + line.substring(0, line.lastIndexOf(":"))));
             }
             return hashes;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } finally {
+            response.close();
         }
     }
 
-    public static void main(String[] args) {
-        List<org.pwnedpasswords4j.client.Hex> hashes = new PwnedPasswordClient(
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        List<Hex> hashes = new PwnedPasswordClient(
                 new OkHttpClient(), "https://api.pwnedpasswords.com/range/", "PwnedPasswordClient for Java"
-        ).fetchHashes(org.pwnedpasswords4j.client.Hex.from("5baa6"));
+        ).fetchHashesAsync(Hex.from("5baa6")).get();
 
         hashes.forEach(System.out::println);
     }
