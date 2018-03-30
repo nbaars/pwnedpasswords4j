@@ -1,4 +1,4 @@
-package org.pwnedpasswords4j.spring;
+package com.github.nbaars.pwnedpasswords4j.spring;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
