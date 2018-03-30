@@ -1,4 +1,4 @@
-package org.pwnedpasswords4j.client;
+package com.github.nbaars.pwnedpasswords4j.client;
 
 
 import org.junit.Test;

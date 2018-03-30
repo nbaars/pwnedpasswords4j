@@ -1,4 +1,4 @@
-package org.pwnedpasswords4j.demo;
+package com.github.nbaars.pwnedpasswords4j.demo;
 
 public class Login {
 

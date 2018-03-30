@@ -1,8 +1,8 @@
-package org.pwnedpasswords4j.spring;
+package com.github.nbaars.pwnedpasswords4j.spring;
 
+import com.github.nbaars.pwnedpasswords4j.client.PwnedPasswordChecker;
+import com.github.nbaars.pwnedpasswords4j.client.PwnedPasswordClient;
 import okhttp3.OkHttpClient;
-import org.pwnedpasswords4j.client.PwnedPasswordChecker;
-import org.pwnedpasswords4j.client.PwnedPasswordClient;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
