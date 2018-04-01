@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.pwnedpasswords4j</groupId>
-    <artifactId>pwnedpasswords-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>com.github.nbaars</groupId>
+    <artifactId>pwnedpasswords4j-parent</artifactId>
+    <version>1.0.0.0</version>
     <packaging>pom</packaging>
     <name>parent</name>
     <description>Spring Boot autoconfiguration for easy checking passwords against the pwdpassword service of Troy
@@ -46,9 +46,8 @@
     </developers>
 
     <modules>
-        <module>pwnedpasswords-client</module>
-        <module>pwnedpasswords-demo</module>
-        <module>pwnedpasswords-spring-boot-starter</module>
+        <module>pwnedpasswords4j-client</module>
+        <module>pwnedpasswords4j-spring-boot-starter</module>
     </modules>
 
     <properties>

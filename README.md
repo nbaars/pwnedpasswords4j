@@ -12,9 +12,9 @@ To use the checker you need to add the following library to the `pom.xml`:
 
 ```
 <dependency>
-  <groupId>org.pwnedpassword4j</groupId>
-  <artifactId>client</artifactId>
-  <version>${project.version}</version>
+  <groupId>com.github.nbaars</groupId>
+  <artifactId>pwnedpasswords4j-client</artifactId>
+  <version>1.0.0.0</version>
 </dependency>
 
 ```
@@ -38,9 +38,9 @@ For Spring Boot there is an autoconfigure module, to use this use the following 
 
 ```
 <dependency>
-  <groupId>org.pwnedpassword4j</groupId>
-  <artifactId>pwnedpasswords-spring-boot-starter</artifactId>
-  <version>${project.version}</version>
+  <groupId>com.github.nbaars</groupId>
+  <artifactId>pwnedpasswords4j-spring-boot-starter</artifactId>
+  <version>1.0.0.0</version>
 </dependency>
 ``` 
 
@@ -90,5 +90,13 @@ public class SignupController {
 ```
 
 
+## Releasing 
 
+This is a manual process for now, make sure the GPG keys are in place
 
+```
+mvn clean deploy -Prelease
+```
+
+Go to `https://oss.sonatype.org/#stagingRepositories` and search the uploaded bundle, click `Close` wait for 
+all the rules to finish and click `Release`.
