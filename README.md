@@ -5,6 +5,8 @@
 A Java client for checking a password against pwnedpasswords.com using the `Searching by range` API
 For more details see: https://haveibeenpwned.com/API/v2#SearchingPwnedPasswordsByRange
 
+__News: Artifacts are available through Maven Central__
+
 ## Pure Java client
 
 The artifact `client` can be used in a standalone Java program and does not rely on Spring Boot
