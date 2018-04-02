@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/nbaars/pwnedpasswords4j.svg?branch=master)](https://travis-ci.org/nbaars/pwnedpasswords4j)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c9a83bdca79e94f32c59/maintainability)](https://codeclimate.com/github/nbaars/pwnedpasswords4j/maintainability)
 [![Quality Gate](https://sonarcloud.io/api/badges/gate?key=com.github.nbaars%3Apwnedpasswords4j-parent)](https://sonarcloud.io/dashboard/index/com.github.nbaars%3Apwnedpasswords4j-parent)
-[![Coverage](https://sonarcloud.io/api/badges/gate?key=com.github.nbaars%3Apwnedpasswords4j-parent&metric=coverage)](https://sonarcloud.io/dashboard/index/com.github.nbaars%3Apwnedpasswords4j-parent)
+[![Coverage](https://img.shields.io/sonar/https/sonarcloud.io/com.github.nbaars%3Apwnedpasswords4j-parent/coverage.svg)](https://sonarcloud.io/dashboard/index/com.github.nbaars%3Apwnedpasswords4j-parent)
 
 ## Introduction
 
