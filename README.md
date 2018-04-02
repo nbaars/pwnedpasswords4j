@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/nbaars/pwnedpasswords4j.svg?branch=master)](https://travis-ci.org/nbaars/pwnedpasswords4j)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c9a83bdca79e94f32c59/maintainability)](https://codeclimate.com/github/nbaars/pwnedpasswords4j/maintainability)
 [![Quality Gate](https://sonarcloud.io/api/badges/gate?key=com.github.nbaars%3Apwnedpasswords4j-parent)](https://sonarcloud.io/dashboard/index/com.github.nbaars%3Apwnedpasswords4j-parent)
+[![Coverage](https://sonarcloud.io/api/badges/gate?key=com.github.nbaars%3Apwnedpasswords4j-parent&metric=coverage)](https://sonarcloud.io/dashboard/index/com.github.nbaars%3Apwnedpasswords4j-parent)
 
 ## Introduction
 
@@ -21,7 +22,7 @@ To use the checker you need to add the following library to the `pom.xml`:
 <dependency>
   <groupId>com.github.nbaars</groupId>
   <artifactId>pwnedpasswords4j-client</artifactId>
-  <version>1.0.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 
 ```
@@ -47,7 +48,7 @@ For Spring Boot there is an autoconfigure module, to use this use the following 
 <dependency>
   <groupId>com.github.nbaars</groupId>
   <artifactId>pwnedpasswords4j-spring-boot-starter</artifactId>
-  <version>1.0.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ``` 
 
