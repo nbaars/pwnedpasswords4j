@@ -13,7 +13,7 @@ addons:
 install: "/bin/true"
 script:
 - mvn clean install
-- sonar-scanner -Dsonar.projectKey=pwnedpasswords4j -Dsonar.projectName=PwnedPassword4J -Dsonar.sources=src -Dsonar.modules=pwnedpasswords-client,pwnedpasswords-spring-boot-starter
+- sonar-scanner -Dsonar.projectKey=pwnedpasswords4j -Dsonar.projectName=PwnedPassword4J -Dsonar.sources=src -Dsonar.modules=pwnedpasswords4j-client,pwnedpasswords4j-spring-boot-starter
 cache:
   directories:
   - "$HOME/.m2"
