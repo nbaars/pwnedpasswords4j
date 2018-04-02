@@ -13,7 +13,7 @@ addons:
 install: "/bin/true"
 script:
 - mvn clean install
-- sonar-scanner -Dsonar.projectKey=pwnedpasswords4j -Dsonar.projectName=PwnedPassword4J -Dsonar.sources=src -Dsonar.modules=pwnedpasswords4j-client,pwnedpasswords4j-spring-boot-starter -Dsonar.java.binaries=. -Dsonar.java.source=1.8 -Dsonar.java.coveragePlugin=jacoco -Dsonar.dynamicAnalysis=reuse -Dsonar.jacoco.reportPath=target/jacoco.exec
+- sonar-scanner -Dsonar.projectKey=pwnedpasswords4j -Dsonar.projectName=PwnedPassword4J -Dsonar.sources=src -Dsonar.modules=pwnedpasswords4j-client,pwnedpasswords4j-spring-boot-starter -Dsonar.java.binaries=. -Dsonar.java.source=1.8 -Dsonar.java.coveragePlugin=jacoco -Dsonar.dynamicAnalysis=reuse -Dsonar.jacoco.reportPaths=target/jacoco.exec
 cache:
   directories:
   - "$HOME/.m2"
