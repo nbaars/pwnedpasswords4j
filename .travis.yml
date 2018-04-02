@@ -3,9 +3,19 @@ services:
 language: java
 jdk:
 - oraclejdk8
+
+addons:
+  sonarcloud:
+    organization: "nbaars-github"
+    token:
+      secure: "lSSoh+YrgLtQfbxdF9hMUuEUgLNtfQEmwPKWvmxQE5BlD4KaMPgazql83MBpGNSiJQGqOktB4jJh6dBYY+VoZ7xDYIKuu0WKCDmOGK9Uyry3SUNKvUYS+3nKUSacK/48zdGNTmRIRNQxvy4cqDY45OhB7RUeROOlI/jK+dHbUphab3BNAEt5DSguSVRR9A9dVmr24W2TC4QFaQPemdrBeuQCnnoWWAL8nbuFoethItZQvCYU6CmeMs2SEzBIoI93OzHPxWs24vN2sZD+BhsPNZOGzNgpY5dum+oN4f7M3x7nh+bj5QfnsDho0DGvMIdl9uyC4eE7E0EDoqSWNuaRLIyJW0b1eNnVu+2pz+ZKb45wzY0B+0OgAZMyYD9jU5iTRAQ8+JDM4hbUJDz1fLvUqC2F+1UePdaDHywZ2bdmTVP6MrH0VunvVP4xepYahfsAxIaTw2kl5pj1xgXwIyGuVqYOUsomfp6YFZzHbGRv/k5NO4gzLfLV/gMz3bXIEtKm0w8v+DV7AF6eRnuqqLMFYulgkJ2LmxnzukECZPSWM+JrvJ763muGrbaCT4gBbgI1PX4hew/V6cAqzIHYsJzpZvGa5q3PllcPLCirDWPG4WiQY4SlA9qoQs0xyEyXMmT9W5XfhqUdSHADMRDnM3n6M6zrGjDFf88SLipurDX/zrI="
+
 install: "/bin/true"
 script:
 - mvn clean install
+- sonar-scanner -Dsonar.projectKey=pwnedpasswords4j -Dsonar.projectName=PwnedPassword4J -Dsonar.sources=src -Dsonar.modules=pwnedpasswords4j-client,pwnedpasswords4j-spring-boot-starter
 cache:
   directories:
   - "$HOME/.m2"
+
+
