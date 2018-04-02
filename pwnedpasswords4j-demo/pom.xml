@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.nbaars</groupId>
     <artifactId>pwnedpasswords4j-demo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Demo project for Spring Boot pwned password checker</name>
 
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>com.github.nbaars</groupId>
             <artifactId>pwnedpasswords4j-spring-boot-starter</artifactId>
-            <version>${project.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

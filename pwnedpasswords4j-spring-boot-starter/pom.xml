@@ -36,8 +36,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.pwnedpasswords4j</groupId>
-            <artifactId>pwnedpasswords-client</artifactId>
+            <groupId>com.github.nbaars</groupId>
+            <artifactId>pwnedpasswords4j-client</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
