@@ -3,6 +3,7 @@ package com.github.nbaars.pwnedpasswords4j.client;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -36,9 +37,15 @@ public class PwnedPasswordClient {
             @Override
             public void onResponse(Call call, Response response) {
                 try {
-                    future.complete(parseResponse(hashedPassword.firstFive(), response));
+                    if (!response.isSuccessful()) {
+                        future.completeExceptionally(new ConnectException("Call failed to " + url + " got " + response));
+                    } else {
+                        future.complete(parseResponse(hashedPassword.firstFive(), response));
+                    }
                 } catch (IOException e) {
                     future.completeExceptionally(e);
+                } finally {
+                    response.close();
                 }
             }
         });
@@ -54,27 +61,12 @@ public class PwnedPasswordClient {
     }
 
     private List<Hex> parseResponse(Hex range, Response response) throws IOException {
-        try {
-            if (!response.isSuccessful()) {
-                throw new RuntimeException("Call failed to " + url + " got " + response);
-            }
-            List<Hex> hashes = new ArrayList<>();
-            String[] lines = response.body().string().split(getProperty("line.separator"));
+        List<Hex> hashes = new ArrayList<>();
+        String[] lines = response.body().string().split(getProperty("line.separator"));
 
-            for (String line : lines) {
-                hashes.add(Hex.from(range + line.substring(0, line.lastIndexOf(":"))));
-            }
-            return hashes;
-        } finally {
-            response.close();
+        for (String line : lines) {
+            hashes.add(Hex.from(range + line.substring(0, line.lastIndexOf(":"))));
         }
-    }
-
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
-        List<Hex> hashes = new PwnedPasswordClient(
-                new OkHttpClient(), "https://api.pwnedpasswords.com/range/", "PwnedPasswordClient for Java"
-        ).fetchHashesAsync(Hex.from("5baa6")).get();
-
-        hashes.forEach(System.out::println);
+        return hashes;
     }
 }
