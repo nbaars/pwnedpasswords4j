@@ -13,7 +13,7 @@ addons:
 install: "/bin/true"
 script:
 - mvn clean install
-- sonar-scanner
+- sonar-scanner -Dsonar.projectKey=pwnedpasswords4j -Dsonar.projectName=PwnedPassword4J -Dsonar.sources=src
 cache:
   directories:
   - "$HOME/.m2"
