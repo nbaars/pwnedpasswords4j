@@ -1,7 +1,5 @@
 package com.github.nbaars.pwnedpasswords4j.client;
 
-import okhttp3.OkHttpClient;
-
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -10,7 +8,6 @@ import java.util.concurrent.ExecutionException;
 
 public class PwnedPasswordChecker {
 
-    private static OkHttpClient httpClient = new OkHttpClient();
     private final PwnedPasswordClient client;
 
     public PwnedPasswordChecker(PwnedPasswordClient client) {
@@ -39,13 +36,4 @@ public class PwnedPasswordChecker {
             throw new RuntimeException(e);
         }
     }
-
-    public static PwnedPasswordChecker standalone(String userAgent) {
-        return standalone("https://api.pwnedpasswords.com/range/", userAgent);
-    }
-
-    public static PwnedPasswordChecker standalone(String url, String userAgent) {
-        return new PwnedPasswordChecker(new PwnedPasswordClient(httpClient, url, userAgent));
-    }
-
 }
