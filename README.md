@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/nbaars/pwnedpasswords4j.svg?branch=master)](https://travis-ci.org/nbaars/pwnedpasswords4j)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c9a83bdca79e94f32c59/maintainability)](https://codeclimate.com/github/nbaars/pwnedpasswords4j/maintainability)
-[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=pwnedpasswords4j)](https://sonarcloud.io/dashboard/index/pwnedpasswords4j)
+[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=pwnedpasswords4j-parent)](https://sonarcloud.io/dashboard/index/pwnedpasswords4j-parent)
 
 ## Introduction
 

@@ -7,9 +7,24 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Objects;
+
 @Configuration
 @EnableConfigurationProperties(PwnedPasswordProperties.class)
 public class PwnedPasswordAutoConfiguration {
+
+    private final PwnedPasswordProperties properties;
+
+    public PwnedPasswordAutoConfiguration(PwnedPasswordProperties properties) {
+        Objects.requireNonNull(properties.getUrl(), "Please specify pwnedpasswords4j.url in application.properties");
+        Objects.requireNonNull(properties.getUserAgent(), "Please specify pwnedpasswords4j.user_agent in application.properties");
+
+        this.properties = properties;
+    }
+
+    public PwnedPasswordProperties getProperties() {
+        return properties;
+    }
 
     @Bean
     public OkHttpClient okHttpClient() {
