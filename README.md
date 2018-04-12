@@ -7,7 +7,6 @@
 
 ## Introduction
 
-https://sonarcloud.io/dashboard?id=
 A Java client for checking a password against pwnedpasswords.com using the `Searching by range` API
 For more details see: https://haveibeenpwned.com/API/v2#SearchingPwnedPasswordsByRange
 
