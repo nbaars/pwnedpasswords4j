@@ -21,7 +21,7 @@ To use the checker you need to add the following library to the `pom.xml`:
 <dependency>
   <groupId>com.github.nbaars</groupId>
   <artifactId>pwnedpasswords4j-client</artifactId>
-  <version>1.0.1</version>
+  <version>1.1.0</version>
 </dependency>
 
 ```
